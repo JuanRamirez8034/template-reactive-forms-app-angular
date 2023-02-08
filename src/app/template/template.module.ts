@@ -7,6 +7,7 @@ import { BasicsComponent } from './components/basics/basics.component';
 import { SwitchesComponent } from './components/switches/switches.component';
 import { DynamicsComponent } from './components/dynamics/dynamics.component';
 import { CustomMinNumberDirective } from './directives/custom-min-number.directive';
+import { AlertComponent } from '../components/alert/alert.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CustomMinNumberDirective } from './directives/custom-min-number.directi
     BasicsComponent,
     SwitchesComponent,
     DynamicsComponent,
-    CustomMinNumberDirective
+    CustomMinNumberDirective,
+    AlertComponent
   ],
   imports: [
     CommonModule,

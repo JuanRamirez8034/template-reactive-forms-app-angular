@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AlerConfig } from 'src/app/components/interfaces/interfaces';
 
 @Component({
   selector: 'app-basics',
@@ -7,6 +8,19 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./basics.component.css']
 })
 export class BasicsComponent {
+
+  // variables para el alert (estas propiedades provienen del archivo de interfaces personalizadas)
+  public alertConfig : AlerConfig = {
+    showSpinner : true,
+    showAlert : false,
+    text:''
+  }
+
+  // funcion para descartar el alerta
+  private hideAlert():void{
+    setTimeout(()=>this.alertConfig = {text:'', showAlert:false, showSpinner:false}, 1500);
+  }
+
 
   // extrayendo los valores del formulario pasado como refLocal y almacenando en una variable
   // se le coloca "!:" para especificar que la variable contendrá algo y no será nula
@@ -33,7 +47,30 @@ export class BasicsComponent {
   }
 
   public save():void{
-    console.log(this.form.valid, this.form.value, this.form.controls['price']);  
+    console.log(this.form.valid, this.form.value, this.form.controls['price']); 
+    // Mostrando el alerta personalizado
+    this.alertConfig = {showAlert:true, text:'Loading...', showSpinner: true};
+
+
+    // funcionalidad para realizar el restablecimiento del formulario
+    setTimeout(()=>{
+      // funcionalidad para restablecer el formulario
+      // this.form.reset({
+      //   name:'',
+      //   price:0,
+      //   stock:0
+      // });//restablecer el formulario
+
+      this.form.resetForm({
+        name:'',
+        price:0,
+        stock:null
+      });
+
+      // funcionalidad para el alert
+      this.alertConfig = {showAlert:true, showSpinner:false, text:'Finish loading...'}
+      this.hideAlert();
+    }, 3000);
       
   }
 

@@ -1,0 +1,10 @@
+<div class="alert alert-{{typeAlert}} row alert-position" *ngIf="showAlert">
+  <div class="col-3" *ngIf="showSpinner">
+    <div class="spinner-border text-primary">
+    </div>
+  </div>
+
+  <div class="col d-flex align-items-center p-2 px-3">
+    <span>{{text ||'Loading...'}}</span>
+  </div>
+</div>
