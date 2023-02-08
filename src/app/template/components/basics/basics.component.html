@@ -1,0 +1,120 @@
+<div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
+  <h3 class="d-block text-center mb-2">Form basic</h3>
+
+  <!-- accedemos a los valores del formulario a traves del viewChild('basicTemplateForm') en el componente
+       otra forma es pasar el valor directamenete a la funcion encargada de guardar los datos "save('basicTemplateForm');"-->
+  <form action="#" class="d-block p-3 rounded-2" (ngSubmit)="save();" #basicTemplateForm="ngForm" autocomplete="off">
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-person"></i></span>
+      <div class="form-floating transition-smooth">
+        <input type="text" class="form-control" placeholder="Product name" ngModel name="name" id="name" required minlength="3">
+        <label for="name" class="transition-smooth">Product name</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="validName();"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min three chars</small></div>
+    </div>
+
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+      <div class="form-floating transition-smooth">
+
+        <!-- utilizando directiva personalozada "customNumberMin" 
+             para que funcione debe estar el "ngModel y customNumberMin" además del valor
+             que determina la condicion de limitación
+        -->
+        <input type="number" class="form-control" placeholder="Product price" 
+          ngModel 
+          name="price" 
+          id="price" 
+          required 
+          min="0"
+          custonNumberMin
+          [customMinNumber]="0"
+        >
+
+        <label for="price" class="transition-smooth">Product price</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="validPrice();"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min price 0</small></div>
+    </div>
+
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-broadcast"></i></span>
+      <div class="form-floating transition-smooth">
+        <input type="number" class="form-control" placeholder="Stock" 
+          ngModel 
+          name="stock" 
+          id="stock" 
+          required 
+          min="0"
+          custonNumberMin
+          [customMinNumber]="0"
+        >
+        <label for="stock" class="transition-smooth">Stock</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="validStock();"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min stock 0</small></div>
+    </div>
+
+    <!-- boton de envío -->
+    <div class="w-100 d-flex justify-content-end">
+        <!-- validando el boton de envio de formulario con [disabled] -->
+        <button type="submit" class="btn btn-primary float-end col-3" [disabled]="basicTemplateForm.invalid">Save</button>
+    </div>
+
+  </form>
+
+  <!-- Muestras de los resultados y l¡validaciones -->
+  <div class="container mt-2">
+    <div class="row p-0">
+
+      <!-- Propiedad de formulario valido -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Form valid</h4>
+        <small>The form is valid? => </small>
+        <span class="text-bg-info fw-bold">{{basicTemplateForm.valid}}</span>
+      </div>
+
+      <!-- Propiedad de los valores de los campos del formulario -->
+      <div class="col-md-8 px-1 mt-2">
+        <h4>Form fields</h4>
+        <small>Fields values</small>
+        <pre>{{basicTemplateForm.value | json}}</pre>
+      </div>
+
+      <!-- Propiedad de formulario tocado (cuando se toca el formulario y se sale de él) -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Form touched</h4>
+        <small>Was the form touched? => </small>
+        <span class="text-bg-info fw-bold">{{basicTemplateForm.touched}}</span>
+      </div>
+
+      <!-- Propiedad de formulario pristine -->
+      <div class="col-md-8 px-1 mt-2">
+        <h4>Form pristine (form org)</h4>
+        <small>Is the form original? => </small>
+        <span class="text-bg-info fw-bold">{{basicTemplateForm.pristine}}</span>
+      </div>
+
+      <!-- evidenciando la existencia de los errores encontrados -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Validation errors (Price field)</h4>
+        <small>Errors ?</small>
+        <pre class="text-bg-info fw-bold">{{basicTemplateForm.controls['price']?.errors | json}}</pre>
+      </div>
+
+    </div>
+  </div>
+</div>

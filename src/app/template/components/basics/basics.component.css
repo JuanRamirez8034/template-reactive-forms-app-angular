@@ -1,0 +1,14 @@
+.transition-smooth{
+  transition: all 0.2s ease-in-out !important;
+}
+
+form{
+  margin-top: 35px;
+  background: #ffffff17;
+  filter: drop-shadow(0 0 5px #80808098);
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button{
+  display: none;
+}

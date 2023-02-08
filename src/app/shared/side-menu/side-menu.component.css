@@ -1,0 +1,8 @@
+ul li{
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+ul li:hover i{
+  font-size: 20px;
+}

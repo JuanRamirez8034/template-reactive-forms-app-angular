@@ -1,0 +1,25 @@
+<div class="w-100 py-2 px-3">
+
+  <span class="h4 text-black text-center pb-1 d-block"><i class="bi bi-list"></i> Nav Bar</span>
+  <hr>
+
+  <span class="h5 text-black d-block">Template</span>
+  <ul class="list-group mb-4">
+    <li *ngFor="let item of templateMenu"
+        class="list-group-item"
+        routerLink="{{item.url}}"
+        routerLinkActive="active"
+    ><i class="bi bi-ui-checks-grid"></i> {{item.label}}</li>
+  </ul>
+
+  <hr>
+  <span class="h5 text-black d-block">Reactive</span>
+  <ul class="list-group">
+    <li *ngFor="let item of reactiveMenu"
+        class="list-group-item"
+        routerLink="{{item.url}}"
+        routerLinkActive="active"
+    ><i class="bi bi-ui-radios"></i> {{item.label}}</li>
+  </ul>
+
+</div>
