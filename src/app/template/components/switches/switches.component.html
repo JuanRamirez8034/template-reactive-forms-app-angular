@@ -1,1 +1,124 @@
-<p>switches works!</p>
+<app-alert 
+  [showAlert]="alertConfig.showAlert" 
+  [text]="alertConfig.text" 
+  [showSpinner]="alertConfig.showSpinner"
+  [typeAlert]="alertConfig.typeAlert"
+></app-alert>
+<div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
+  <!-- titulo -->
+  <h3  class="d-block text-center mb-2">Switches and radios</h3>
+
+  <!-- formulario -->
+  <form action="#" class="d-block p-3 rounded-2" (ngSubmit)="save();" #switchesbasicForm="ngForm">
+    <!-- radios button -->
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <span class="fw-bold fs-4 mt-sm-2"><i class="bi bi-gender-trans"></i> Gender</span>
+      </div>
+      <div class="col-md-8">
+        <!-- radio 1 -->
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="gender" 
+            id="female"
+            [(ngModel)]="person.gender"
+            value="F"
+            required
+          >
+          <label class="form-check-label" for="female"> Female <i class="bi bi-gender-female text-danger text-opacity-50"></i></label>
+        </div>
+        <!-- radio 2 -->
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="radio" 
+            name="gender" 
+            id="male"
+            [(ngModel)]="person.gender"
+            value="M"
+            required
+          >
+          <label class="form-check-label" for="male"> Male <i class="bi bi-gender-male text-primary"></i></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- switch button -->
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <span class="fw-bold fs-4 mt-sm-2"><i class="bi bi-bell-fill text-warning"></i> Notifications</span>
+      </div>
+      <div class="col-md-8">
+        <!-- switch 1 -->
+        <div class="form-check form-switch">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            name="notification" 
+            id="notification"
+            [(ngModel)]="person.notifications"
+          >
+          <label class="form-check-label" for="notification">Enabled</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- checkbox button -->
+    <div class="row mb-2">
+      <div class="col-md-4">
+        <span class="fw-bold fs-4 mt-sm-2"><i class="bi bi-justify-right text-success"></i> Terms</span>
+      </div>
+      <div class="col-md-8">
+        <!-- switch 1 -->
+        <div class="form-check form-check-inline">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            name="terms" 
+            [(ngModel)]="termsAndConditions"
+            id="terms"
+            required
+          >
+          <label class="form-check-label" for="terms">Acept</label>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- boton de guardar -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary col-4" [disabled]="switchesbasicForm.invalid" (click)="save();">Save</button>
+    </div>
+
+  </form>
+
+  <!-- seccion de informacion adicional -->
+  <div class="p-3 w-100 row">
+    <div class="col-md-6">
+      <h3>Form values</h3>
+      <pre>{{switchesbasicForm.control?.value | json}}</pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Person object values</h3>
+      <pre>{{person | json}}</pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Gender error?</h3>
+      <pre>{{switchesbasicForm.controls['gender']?.errors | json}}</pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Terms error?</h3>
+      <pre>{{switchesbasicForm.controls['terms']?.errors | json}}</pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Form valid?</h3>
+      <pre>{{switchesbasicForm.valid}}</pre>
+    </div>
+    <div class="col-md-6">
+      <h3>Terms value?</h3>
+      <pre>{{termsAndConditions}}</pre>
+    </div>
+  </div>
+</div>

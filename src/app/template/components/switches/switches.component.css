@@ -1,0 +1,8 @@
+form.d-block.p-3.rounded-2{
+  filter: drop-shadow(0 0 10px #0004ff9a);
+  box-shadow: 0 0 10px #8080805d;
+  background: url('../../../../assets/angularloge.png');
+  background-repeat: no-repeat;
+  background-size: 150px 150px;
+  background-position: top right 50px;
+}
