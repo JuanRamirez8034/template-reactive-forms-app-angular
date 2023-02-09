@@ -1,1 +1,117 @@
-<p>dynamics works!</p>
+<app-alert 
+  [showAlert]="alertConfig.showAlert" 
+  [text]="alertConfig.text" 
+  [showSpinner]="alertConfig.showSpinner"
+  [typeAlert]="alertConfig.typeAlert"
+></app-alert>
+
+<div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
+  <h3 class="d-block text-center mb-2">Dynamic form</h3>
+
+  <form action="#" class="d-block p-3 rounded-2" (ngSubmit)="save();" #dynamicTemplateForm="ngForm" autocomplete="off">
+
+    <!-- input name-->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-person"></i></span>
+      <div class="form-floating transition-smooth">
+        
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Name" 
+          ngModel 
+          name="name" 
+          id="name" 
+          required 
+          minlength="3"
+        >
+
+        <label for="name" class="transition-smooth">Name</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="dynamicTemplateForm.controls['name']?.errors && dynamicTemplateForm.controls['name'].touched;"
+        class="w-100 text-danger px-2"
+      ><small>This field required.</small></div>
+    </div>
+
+    <!-- input add-->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-controller"></i></span>
+      <div class="form-floating transition-smooth">
+        
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Add your favorit game" 
+          ngModel 
+          name="game" 
+          id="game" 
+          [(ngModel)]="newGame"
+          (keydown.enter)="addGame();"
+        >
+
+        <label for="game" class="transition-smooth">Add your favorit game</label>
+      </div>
+      <!-- boton para agregar -->
+      <button class="btn btn-outline-primary" type="button" (click)="addGame();">Add</button>
+
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="person.games.length < 1 && dynamicTemplateForm.controls['game']?.touched;"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Please add a game</small></div>
+    </div>
+
+    <!-- Contenedor de los favoritos -->
+    <div class="w-100 mb-2">
+      <!-- si el arreglo de juegos de la persona no contiene nada se muestra el mensaje del template -->
+      <div *ngIf="person.games.length >= 1; else gamesList;" class="row">
+        
+        <div class="col-md-2 mb-1">
+          <span class="d-flex justify-content-center align-items-center mt-2"><i class="bi bi-list-check"></i> <span class="fw-bold text-decoration-underline">Game list</span></span>
+        </div>
+
+        <!-- inputs generados dinamicamente -->
+        <div class="col-md-10">
+
+          <div class="input-group mb-1" *ngFor="let game of person.games ; let i = index;">
+            <!-- icono derecha -->
+            <span class="input-group-text text-info"><i class="bi bi-joystick"></i></span>
+            <!-- input -->
+            <div class="form-floating">
+              <input 
+                type="text" 
+                class="form-control"
+                [ngModel]="game.name"
+                [name]="'game_'+ i" 
+                [id]="'game_'+ i"
+                [placeholder]="game.name"
+                disabled
+              >
+              <label [for]="'game_'+ i">Name game {{i}}</label>
+            </div>
+            <button class="btn btn-danger" type="button" (click)="removeGame(game.id);"><i class="bi bi-x-circle fs-3"></i></button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <ng-template #gamesList>
+        <p class="text-black-50 text-decoration-underline">Empty list games <i class="bi bi-joystick"></i></p>
+      </ng-template>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary col-4" (click)="save();" [disabled]="dynamicTemplateForm.invalid">Save</button>
+    </div>
+
+  </form>
+
+  <div class="p-3 w-100">
+    <h3>Person data object</h3>
+    <pre>{{person | json}}</pre>
+  </div>
+  
+</div>

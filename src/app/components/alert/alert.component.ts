@@ -9,6 +9,6 @@ export class AlertComponent {
   @Input('showAlert') public showAlert : boolean = true;
   @Input('showSpinner') public showSpinner : boolean = true;
   @Input('text') public text : string = '';
-  @Input('typeAlert') public typeAlert : string = 'info';
-  @Input('typeSpiner') public typeSpiner : string = 'primary';
+  @Input('typeAlert') public typeAlert : string | undefined = 'info';
+  @Input('typeSpiner') public typeSpiner : string | undefined = 'primary';
 }
