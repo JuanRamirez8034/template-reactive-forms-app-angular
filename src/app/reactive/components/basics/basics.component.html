@@ -2,23 +2,33 @@
   [showAlert]="alertConfig.showAlert" 
   [text]="alertConfig.text" 
   [showSpinner]="alertConfig.showSpinner"
+  [typeAlert]="alertConfig.typeAlert"
 ></app-alert>
 
 <div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
   <h3 class="d-block text-center mb-2">Form basic (Reactive)</h3>
 
-
-  <form action="#" class="d-block p-3 rounded-2"  autocomplete="off">
+  <!-- enazando nuestro formulario con la variable definida en el componente, para eso se utiliza la directiva
+      [formGroup]="basicReactiveForm" donde basicReactiveForm es l variable que define e identifica el formulario
+   -->
+  <form action="#" class="d-block p-3 rounded-2" (onsubmit)="save();" [formGroup]="basicReactiveForm" autocomplete="off">
     <!-- input -->
     <div class="input-group w-100 mb-2">
       <span class="input-group-text"><i class="bi bi-person"></i></span>
       <div class="form-floating transition-smooth">
-        <input type="text" class="form-control" placeholder="Product name" name="name" id="name">
+        <!-- para enlazar los inout al formulario definido se usa la directiva "FormControlName" y se le coloca como valor
+             el nombre de la propiedad definida en el componente
+         -->
+        <input type="text" class="form-control" placeholder="Product name" 
+          name="name" 
+          id="name" 
+          formControlName="name"
+        >
         <label for="name" class="transition-smooth">Product name</label>
       </div>
       <!-- mensaje en caso de error -->
       <div 
-        *ngIf="true"
+        *ngIf="showValidError('name')"
         class="w-100 text-danger px-2"
       ><small>This field required. Min three chars</small></div>
     </div>
@@ -31,13 +41,14 @@
         <input type="number" class="form-control" placeholder="Product price" 
           name="price" 
           id="price"
+          formControlName="price"
         >
 
         <label for="price" class="transition-smooth">Product price</label>
       </div>
       <!-- mensaje en caso de error -->
       <div 
-        *ngIf="true"
+        *ngIf="showValidError('price')"
         class="w-100 text-danger px-2"
       ><small>This field required. Min price 0</small></div>
     </div>
@@ -48,13 +59,14 @@
       <div class="form-floating transition-smooth">
         <input type="number" class="form-control" placeholder="Stock" 
           name="stock" 
-          id="stock" 
+          id="stock"
+          formControlName="stock" 
         >
         <label for="stock" class="transition-smooth">Stock</label>
       </div>
       <!-- mensaje en caso de error -->
       <div 
-        *ngIf="true"
+        *ngIf="showValidError('stock')"
         class="w-100 text-danger px-2"
       ><small>This field required. Min stock 0</small></div>
     </div>
@@ -62,10 +74,51 @@
     <!-- boton de envío -->
     <div class="w-100 d-flex justify-content-end">
         <!-- validando el boton de envio de formulario con [disabled] -->
-        <button type="submit" class="btn btn-primary float-end col-3" [disabled]="false">Save</button>
+        <button type="submit" class="btn btn-danger bg-opacity-75 float-end col-3" (click)="save();">Save</button>
     </div>
 
   </form>
 
+  <!-- Muestras de los resultados y l¡validaciones -->
+  <div class="container mt-2">
+    <div class="row p-0">
+
+      <!-- Propiedad de formulario valido -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Form valid</h4>
+        <small>The form is valid? => </small>
+        <span class="text-bg-info fw-bold">{{basicReactiveForm.valid}}</span>
+      </div>
+
+      <!-- Propiedad de los valores de los campos del formulario -->
+      <div class="col-md-8 px-1 mt-2">
+        <h4>Form fields</h4>
+        <small>Fields values</small>
+        <pre>{{basicReactiveForm.value | json}}</pre>
+      </div>
+
+      <!-- Propiedad de formulario tocado (cuando se toca el formulario y se sale de él) -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Form touched</h4>
+        <small>Was the form touched? => </small>
+        <span class="text-bg-info fw-bold">{{basicReactiveForm.touched}}</span>
+      </div>
+
+      <!-- Propiedad de formulario pristine -->
+      <div class="col-md-8 px-1 mt-2">
+        <h4>Form pristine (form org)</h4>
+        <small>Is the form original? => </small>
+        <span class="text-bg-info fw-bold">{{basicReactiveForm.pristine}}</span>
+      </div>
+
+      <!-- evidenciando la existencia de los errores encontrados -->
+      <div class="col-md-4 px-1 mt-2">
+        <h4>Validation errors (Price field)</h4>
+        <small>Errors ?</small>
+        <pre class="text-bg-info fw-bold">{{basicReactiveForm.controls['price']?.errors | json}}</pre>
+      </div>
+
+    </div>
+  </div>
 
 </div>

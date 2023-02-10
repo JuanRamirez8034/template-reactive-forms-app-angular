@@ -6,6 +6,7 @@ import { BasicsComponent } from './components/basics/basics.component';
 import { SwitchesComponent } from './components/switches/switches.component';
 import { DynamicsComponent } from './components/dynamics/dynamics.component';
 import { ComponentsModule } from '../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     CommonModule,
     ReactiveRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule,//modulo para formularios reactivos
   ]
 })
 export class ReactiveModule { }
