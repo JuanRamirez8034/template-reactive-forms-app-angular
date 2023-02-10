@@ -7,7 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
-    SideMenuComponent
+    SideMenuComponent,
   ],
   imports: [
     CommonModule,

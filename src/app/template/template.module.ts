@@ -7,7 +7,7 @@ import { BasicsComponent } from './components/basics/basics.component';
 import { SwitchesComponent } from './components/switches/switches.component';
 import { DynamicsComponent } from './components/dynamics/dynamics.component';
 import { CustomMinNumberDirective } from './directives/custom-min-number.directive';
-import { AlertComponent } from '../components/alert/alert.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -16,12 +16,12 @@ import { AlertComponent } from '../components/alert/alert.component';
     SwitchesComponent,
     DynamicsComponent,
     CustomMinNumberDirective,
-    AlertComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    TemplateRoutingModule
+    TemplateRoutingModule,
+    ComponentsModule
   ]
 })
 export class TemplateModule { }

@@ -5,6 +5,7 @@ import { ReactiveRoutingModule } from './reactive-routing.module';
 import { BasicsComponent } from './components/basics/basics.component';
 import { SwitchesComponent } from './components/switches/switches.component';
 import { DynamicsComponent } from './components/dynamics/dynamics.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DynamicsComponent } from './components/dynamics/dynamics.component';
   ],
   imports: [
     CommonModule,
-    ReactiveRoutingModule
+    ReactiveRoutingModule,
+    ComponentsModule
   ]
 })
 export class ReactiveModule { }

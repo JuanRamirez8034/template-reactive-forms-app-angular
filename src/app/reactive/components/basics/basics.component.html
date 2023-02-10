@@ -1,1 +1,71 @@
-<p>basics works!</p>
+<app-alert 
+  [showAlert]="alertConfig.showAlert" 
+  [text]="alertConfig.text" 
+  [showSpinner]="alertConfig.showSpinner"
+></app-alert>
+
+<div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
+  <h3 class="d-block text-center mb-2">Form basic (Reactive)</h3>
+
+
+  <form action="#" class="d-block p-3 rounded-2"  autocomplete="off">
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-person"></i></span>
+      <div class="form-floating transition-smooth">
+        <input type="text" class="form-control" placeholder="Product name" name="name" id="name">
+        <label for="name" class="transition-smooth">Product name</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="true"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min three chars</small></div>
+    </div>
+
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+      <div class="form-floating transition-smooth">
+
+        <input type="number" class="form-control" placeholder="Product price" 
+          name="price" 
+          id="price"
+        >
+
+        <label for="price" class="transition-smooth">Product price</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="true"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min price 0</small></div>
+    </div>
+
+    <!-- input -->
+    <div class="input-group w-100 mb-2">
+      <span class="input-group-text"><i class="bi bi-broadcast"></i></span>
+      <div class="form-floating transition-smooth">
+        <input type="number" class="form-control" placeholder="Stock" 
+          name="stock" 
+          id="stock" 
+        >
+        <label for="stock" class="transition-smooth">Stock</label>
+      </div>
+      <!-- mensaje en caso de error -->
+      <div 
+        *ngIf="true"
+        class="w-100 text-danger px-2"
+      ><small>This field required. Min stock 0</small></div>
+    </div>
+
+    <!-- boton de envío -->
+    <div class="w-100 d-flex justify-content-end">
+        <!-- validando el boton de envio de formulario con [disabled] -->
+        <button type="submit" class="btn btn-primary float-end col-3" [disabled]="false">Save</button>
+    </div>
+
+  </form>
+
+
+</div>
