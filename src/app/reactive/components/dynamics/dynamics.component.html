@@ -6,7 +6,7 @@
 ></app-alert>
 
 <div class="w-100 border-1 border-dark p-1 d-flex flex-column justify-content-center">
-  <h3 class="d-block text-center mb-2">Dynamic form</h3>
+  <h3 class="d-block text-center mb-2">Dynamic form (Reactive)</h3>
 
   <form action="#" class="d-block p-3 rounded-2" (ngSubmit)="save();" [formGroup]="dynamicReactiveForm" autocomplete="off">
 
@@ -100,7 +100,7 @@
     </div>
 
     <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-primary col-4" (click)="save();">Save</button>
+      <button type="button" class="btn btn-danger col-4" (click)="save();">Save</button>
     </div>
 
   </form>
