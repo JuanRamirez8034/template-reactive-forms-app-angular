@@ -1,5 +1,5 @@
 {
-  "name": "template-forms",
+  "name": "template-reactive-forms",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

@@ -14,8 +14,18 @@
 
   <hr>
   <span class="h5 text-black d-block">Reactive</span>
-  <ul class="list-group">
+  <ul class="list-group mb-4">
     <li *ngFor="let item of reactiveMenu"
+        class="list-group-item"
+        routerLink="{{item.url}}"
+        routerLinkActive="active"
+    ><i class="bi bi-ui-radios"></i> {{item.label}}</li>
+  </ul>
+
+  <hr>
+  <span class="h5 text-black d-block">Auth validations</span>
+  <ul class="list-group">
+    <li *ngFor="let item of authValidations"
         class="list-group-item"
         routerLink="{{item.url}}"
         routerLinkActive="active"

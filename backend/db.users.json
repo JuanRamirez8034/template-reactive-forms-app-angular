@@ -1,0 +1,16 @@
+{
+  "users":[
+    {
+      "id":0,
+      "userName":"Juancito22",
+      "fullName":"Juancito Trucupei",
+      "email":"Juancito22@gmail.com"
+    },
+    {
+      "id":1,
+      "userName":"JuanRamirez",
+      "fullName":"Juan De Dios Ramirez Lozano",
+      "email":"juanramirez8034@gmail.com"
+    }
+  ]
+}

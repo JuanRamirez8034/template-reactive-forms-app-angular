@@ -1,0 +1,173 @@
+<div class="d-block w-100 px-4">
+  <h3 class="d-block w-100 text-center">Auth Validations</h3>
+  <hr>
+  <form autocomplete="off" class="mb-5" [formGroup]="loginForm">
+
+    <div class="backgorund-c1"></div>
+    <div class="backgorund-c2"></div>
+
+    <h3><i class="bi bi-box-arrow-in-right fs-2 fw-bold"></i> Login</h3>
+
+    <!-- Input x2 -->
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Input FullName -->
+        <div class="w-100 mb-2">
+          <div class="input-group">
+            <div class="form-floating">
+              <input 
+                class="form-control"
+                type="text"
+                id="fullName"
+                placeholder="Full Name"
+                formControlName="fullName"
+              >
+              <label for="fullName">Full Name</label>
+            </div>
+            <span class="input-group-text fs-3"><i class="bi bi-person-circle"></i></span>
+          </div>
+          <!-- Mensaje error input -->
+          <div class="w-100" *ngIf="validField('fullName');">
+            <span class="fs-6 text-danger">* The full name field is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <!-- Input UserName -->
+        <div class="w-100 mb-2">
+          <div class="input-group">
+            <div class="form-floating">
+              <input 
+                class="form-control"
+                type="text"
+                id="userName"
+                placeholder="User name"
+                formControlName="userName"
+              >
+              <label for="userName">User name</label>
+            </div>
+            <span class="input-group-text fs-3"><i class="bi bi-person-check-fill"></i></span>
+          </div>
+          <!-- Mensaje error input -->
+          <div class="w-100" *ngIf="validField('userName');">
+            <span class="fs-6 text-danger">* The User name field is required, Min three chars</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input email -->
+    <div class="w-100 mb-2">
+      <div class="input-group">
+        <div class="form-floating">
+          <input 
+            class="form-control"
+            type="email"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+          >
+          <label for="email">Email</label>
+        </div>
+        <span class="input-group-text fs-3"><i class="bi bi-envelope-check-fill"></i></span>
+      </div>
+      <!-- Mensaje error input -->
+      <div class="w-100" *ngIf="validField('email')">
+        <span class="fs-6 text-danger">* The email field is required</span>
+      </div>
+    </div>
+
+    <!-- Input password -->
+    <div class="w-100 mb-2">
+      <div class="input-group">
+        <div class="form-floating">
+          <input 
+            class="form-control"
+            type="password"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+          >
+          <label for="password">Password</label>
+        </div>
+        <span class="input-group-text fs-3"><i class="bi bi-shield-check"></i></span>
+      </div>
+      <!-- Mensaje error input -->
+      <div class="w-100">
+        <span class="fs-6 text-danger">* The password field is required</span>
+      </div>
+    </div>
+
+    <!-- Input password -->
+    <div class="w-100 mb-2">
+      <div class="input-group">
+        <div class="form-floating">
+          <input 
+            class="form-control"
+            type="password"
+            id="repeatPassword"
+            placeholder="Repeat Password"
+            formControlName="repeatPassword"
+          >
+          <label for="repeatPassword">Repeat Password</label>
+        </div>
+        <span class="input-group-text fs-3"><i class="bi bi-shield-fill-check"></i></span>
+      </div>
+      <!-- Mensaje error input -->
+      <div class="w-100">
+        <span class="fs-6 text-danger">* The Repeat Password field is required</span>
+      </div>
+    </div>
+
+    <!-- btn x2 -->
+    <div class="row justify-content-between mt-1">
+      <div class="col-5 d-flex align-items-end">
+        <span class="text-decoration-underline text-primary fs-5">I have an account</span>
+      </div>
+      <div class="col-5 d-flex align-items-end">
+        <button type="button" class="btn btn-primary w-100 py-2"><i class="bi bi-box-arrow-in-down-right"></i>Login</button>
+      </div>
+    </div>
+    
+  </form>
+
+
+   <!-- seccion de informacion adicional -->
+   <div class="p-3 w-100 row">
+    <div class="col-md-6">
+      <h3>Form valid?</h3>
+      <span class="text-bg-info fs-5 fw-bold">{{loginForm.valid}}</span>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Form errors?</h3>
+      <span class="text-bg-info fs-5 fw-bold">{{loginForm.errors | json}}</span>
+    </div>
+
+    <div class="col-md-6">
+      <h3>FullName erros?</h3>
+      <pre class="text-bg-info">{{loginForm.controls['fullName']?.errors | json}}</pre>
+    </div>
+
+    <div class="col-md-6">
+      <h3>User name erros?(Juancito22)</h3>
+      <pre class="text-bg-info">{{loginForm.controls['userName']?.errors | json}}</pre>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Email erros?</h3>
+      <pre class="text-bg-info">{{loginForm.controls['email']?.errors | json}}</pre>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Password errors?</h3>
+      <span class="text-bg-info fs-5 fw-bold">{{loginForm.controls['password']?.errors | json}}</span>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Repeat Password errors?</h3>
+      <span class="text-bg-info fs-5 fw-bold">{{loginForm.controls['repeatPassword']?.errors | json}}</span>
+    </div>
+  </div>
+</div>

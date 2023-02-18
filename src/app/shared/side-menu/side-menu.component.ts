@@ -44,4 +44,15 @@ export class SideMenuComponent {
     }
   ];
 
+  public authValidations : ItemMenu[] = [
+    {
+      label:'Login',
+      url:'/auth/login'
+    },
+    {
+      label:'logup',
+      url:'/auth/logup'
+    }
+  ]
+
 }

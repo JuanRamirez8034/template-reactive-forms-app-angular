@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: ()=>import('./template/template.module').then(moduleRoutes => moduleRoutes.TemplateModule)
   },
   {
+    path:'auth',
+    loadChildren: ()=>import('./auth/auth.module').then(moduleRoutes => moduleRoutes.AuthModule)
+  },
+  {
     path:'**',
     redirectTo:'template'
   }
