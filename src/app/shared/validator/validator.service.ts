@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+
+export interface ConfigErrors{
+  name:string;
+  message:string;
+}
+
+export interface FormGroupMessageErrors{
+  form:FormGroup;
+  inputName:string;
+  handleErrors:ConfigErrors[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +62,31 @@ export class ValidatorService {
     };
 
   }
+
   
+  // funcion para comprobar errores y retornar los mensajes personalizados
+  public showMessajeErrors(FGErrs:FormGroupMessageErrors):string{
+
+    // destructuramos el objeto para conseguir:
+    // - El formulario
+    // - Nombre del campo a estudiar
+    // - Arreglo con las configuraciones de los mensajes y sus errores
+    const {form, inputName, handleErrors} = FGErrs;
+
+    // conseguimos el error actual del elemento
+    const inputErrors = form.get(inputName)?.errors;
+
+    // recorremos el arreglo de configuracion de errores y si coincide 
+    // alguno con el error del input se retorna el mensaje de error de dicho error
+    // [errorName, errorMessage]
+    for (const anError of handleErrors) {
+      if(inputErrors?.[anError.name] || inputErrors?.[anError.name] === false || inputErrors?.[anError.name] === null){
+        return anError.message;
+      }
+    }
+
+    // si no hay coincidencia retornamos string vacio
+    return '';
+
+  }
 }

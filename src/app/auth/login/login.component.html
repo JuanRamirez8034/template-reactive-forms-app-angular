@@ -28,7 +28,7 @@
           </div>
           <!-- Mensaje error input -->
           <div class="w-100" *ngIf="validField('fullName');">
-            <span class="fs-6 text-danger">* The full name field is required</span>
+            <span class="fs-6 text-danger">{{fullNameMessagErrors}}</span>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
           </div>
           <!-- Mensaje error input -->
           <div class="w-100" *ngIf="validField('userName');">
-            <span class="fs-6 text-danger">* The User name field is required, Min three chars</span>
+            <span class="fs-6 text-danger">{{userNameMessagErrors}}</span>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
       </div>
       <!-- Mensaje error input -->
       <div class="w-100" *ngIf="validField('email')">
-        <span class="fs-6 text-danger">* The email field is required</span>
+        <span class="fs-6 text-danger">{{emailMessagErrors}}</span>
       </div>
     </div>
 
@@ -94,8 +94,8 @@
         <span class="input-group-text fs-3"><i class="bi bi-shield-check"></i></span>
       </div>
       <!-- Mensaje error input -->
-      <div class="w-100">
-        <span class="fs-6 text-danger">* The password field is required</span>
+      <div class="w-100" *ngIf="validField('password');">
+        <span class="fs-6 text-danger">{{passwordMessagErrors}}</span>
       </div>
     </div>
 
@@ -115,8 +115,8 @@
         <span class="input-group-text fs-3"><i class="bi bi-shield-fill-check"></i></span>
       </div>
       <!-- Mensaje error input -->
-      <div class="w-100">
-        <span class="fs-6 text-danger">* The Repeat Password field is required</span>
+      <div class="w-100" *ngIf="validField('repeatPassword');">
+        <span class="fs-6 text-danger">* Passwords do not mathch</span>
       </div>
     </div>
 
@@ -126,7 +126,7 @@
         <span class="text-decoration-underline text-primary fs-5">I have an account</span>
       </div>
       <div class="col-5 d-flex align-items-end">
-        <button type="button" class="btn btn-primary w-100 py-2"><i class="bi bi-box-arrow-in-down-right"></i>Login</button>
+        <button type="button" class="btn btn-primary w-100 py-2" [disabled]="loginForm.pending" (click)="saved();"><i class="bi bi-box-arrow-in-down-right"></i>Login</button>
       </div>
     </div>
     
@@ -138,6 +138,11 @@
     <div class="col-md-6">
       <h3>Form valid?</h3>
       <span class="text-bg-info fs-5 fw-bold">{{loginForm.valid}}</span>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Form pending?</h3>
+      <span class="text-bg-info fs-5 fw-bold">{{loginForm.pending}}</span>
     </div>
 
     <div class="col-md-6">
